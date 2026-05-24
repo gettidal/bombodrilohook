@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>bombdrilo.hook</title>
 
@@ -15,7 +15,10 @@
 }
 
 :root{
-    --green:#6dff98;
+    --green1:#d8ffe2;
+    --green2:#b6ffc8;
+    --green3:#78ff9d;
+    --green4:#46ff7f;
 }
 
 body{
@@ -29,8 +32,8 @@ body{
     sans-serif;
 
     background:
-    radial-gradient(circle at top left, rgba(109,255,152,.07), transparent 22%),
-    radial-gradient(circle at bottom right, rgba(109,255,152,.06), transparent 22%),
+    radial-gradient(circle at top left, rgba(70,255,127,.08), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(70,255,127,.06), transparent 25%),
     #020403;
 
     color:white;
@@ -44,23 +47,23 @@ body{
     inset:0;
 
     background-image:
-    linear-gradient(rgba(109,255,152,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(109,255,152,.025) 1px, transparent 1px);
+    linear-gradient(rgba(70,255,127,.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(70,255,127,.02) 1px, transparent 1px);
 
     background-size:42px 42px;
 
     mask-image:
-    radial-gradient(circle, black, transparent 82%);
+    radial-gradient(circle, black, transparent 80%);
 }
 
-/* MOUSE LIGHT */
+/* MOUSE EFFECT */
 
 .mouse{
 
     position:fixed;
 
-    width:650px;
-    height:650px;
+    width:700px;
+    height:700px;
 
     border-radius:50%;
 
@@ -68,31 +71,31 @@ body{
 
     background:
     radial-gradient(circle,
-    rgba(109,255,152,.06),
+    rgba(70,255,127,.05),
     transparent 65%);
-
-    filter:blur(30px);
 
     transform:
     translate(-50%, -50%);
 
+    filter:blur(35px);
+
     z-index:0;
 }
 
-/* BG GLOWS */
+/* FLOATERS */
 
 .glow{
 
     position:fixed;
 
-    width:400px;
-    height:400px;
+    width:450px;
+    height:450px;
 
     border-radius:50%;
 
     filter:blur(120px);
 
-    opacity:.08;
+    opacity:.07;
 
     animation:float 10s infinite alternate ease-in-out;
 }
@@ -102,7 +105,7 @@ body{
     top:-120px;
     left:-120px;
 
-    background:#6dff98;
+    background:#46ff7f;
 }
 
 .glow.right{
@@ -110,7 +113,7 @@ body{
     bottom:-120px;
     right:-120px;
 
-    background:#6dff98;
+    background:#46ff7f;
 
     animation-delay:2s;
 }
@@ -152,12 +155,12 @@ body{
 
     border-radius:50%;
 
-    background:#eafff0;
+    background:#eaffef;
 
-    opacity:.65;
+    opacity:.6;
 
     box-shadow:
-    0 0 8px #6dff98;
+    0 0 10px #46ff7f;
 
     animation:fall linear infinite;
 }
@@ -173,7 +176,7 @@ body{
     }
 
     10%{
-        opacity:.7;
+        opacity:.65;
     }
 
     100%{
@@ -200,7 +203,7 @@ body{
     justify-content:center;
     align-items:center;
 
-    padding:30px;
+    padding:35px;
 }
 
 /* CARD */
@@ -212,27 +215,29 @@ body{
     width:min(88vw, 1050px);
 
     padding:
-    clamp(45px,5vw,70px);
+    clamp(45px,5vw,75px);
 
-    border-radius:38px;
+    border-radius:40px;
 
     text-align:center;
 
     background:
-    rgba(5,12,8,.60);
+    rgba(4,10,6,.72);
 
     border:
-    1px solid rgba(109,255,152,.08);
+    1px solid rgba(70,255,127,.06);
 
     backdrop-filter:
-    blur(24px);
+    blur(28px);
 
     box-shadow:
-    0 0 80px rgba(0,0,0,.65),
-    inset 0 1px 0 rgba(255,255,255,.025);
+    0 0 90px rgba(0,0,0,.72),
+    inset 0 1px 0 rgba(255,255,255,.02);
 
     overflow:hidden;
 }
+
+/* OUTLINE */
 
 .card::before{
 
@@ -248,9 +253,9 @@ body{
     background:
     linear-gradient(
         135deg,
-        rgba(109,255,152,.18),
+        rgba(70,255,127,.14),
         transparent,
-        rgba(109,255,152,.10)
+        rgba(70,255,127,.08)
     );
 
     -webkit-mask:
@@ -272,21 +277,21 @@ body{
     gap:10px;
 
     padding:
-    11px 20px;
+    12px 22px;
 
     border-radius:999px;
 
     background:
-    rgba(255,255,255,.025);
+    rgba(255,255,255,.02);
 
     border:
-    1px solid rgba(109,255,152,.07);
+    1px solid rgba(70,255,127,.05);
 
-    color:#d8ffe5;
+    color:#eaffef;
 
     font-size:14px;
 
-    margin-bottom:45px;
+    margin-bottom:50px;
 }
 
 .dot{
@@ -296,10 +301,10 @@ body{
 
     border-radius:50%;
 
-    background:#6dff98;
+    background:#46ff7f;
 
     box-shadow:
-    0 0 12px #6dff98;
+    0 0 14px #46ff7f;
 }
 
 /* TITLE */
@@ -307,34 +312,53 @@ body{
 h1{
 
     font-size:
-    clamp(42px, 6vw, 96px);
+    clamp(48px, 6.4vw, 102px);
 
     line-height:.92;
 
-    letter-spacing:-4px;
+    letter-spacing:-5px;
 
-    margin-bottom:35px;
+    margin-bottom:38px;
+
+    font-weight:800;
 
     word-break:break-word;
 
     overflow-wrap:anywhere;
 
-    font-weight:800;
-
     background:
     linear-gradient(
         90deg,
         #ffffff 0%,
-        #eafff0 28%,
-        #a7ffbf 50%,
-        #ffffff 72%
+        #eaffef 18%,
+        #c5ffd4 35%,
+        #8cffaa 50%,
+        #c5ffd4 65%,
+        #ffffff 100%
     );
+
+    background-size:250% auto;
+
+    animation:
+    gradientMove 8s linear infinite;
 
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 
     text-shadow:
-    0 0 30px rgba(109,255,152,.04);
+    0 0 25px rgba(70,255,127,.04);
+}
+
+@keyframes gradientMove{
+
+    0%{
+        background-position:0% center;
+    }
+
+    100%{
+        background-position:250% center;
+    }
+
 }
 
 /* DESC */
@@ -346,38 +370,36 @@ h1{
 
     line-height:1.55;
 
-    color:#89948d;
+    color:#86938a;
 
-    margin-bottom:50px;
+    margin-bottom:55px;
 }
 
 .desc span{
-    color:#72ff9f;
+    color:#57ff8c;
 }
 
 /* BUTTON */
 
 button{
 
-    position:relative;
-
     width:100%;
 
     padding:
-    26px;
+    28px;
 
-    border-radius:26px;
+    border-radius:28px;
 
     border:
-    1px solid rgba(109,255,152,.38);
+    1px solid rgba(70,255,127,.28);
 
     background:
-    rgba(0,0,0,.22);
+    rgba(0,0,0,.18);
 
-    color:#8effb3;
+    color:#8fffb0;
 
     font-size:
-    clamp(22px,2vw,34px);
+    clamp(24px,2vw,34px);
 
     font-weight:700;
 
@@ -386,8 +408,8 @@ button{
     transition:.25s ease;
 
     box-shadow:
-    0 0 40px rgba(109,255,152,.10),
-    inset 0 0 20px rgba(109,255,152,.03);
+    0 0 40px rgba(70,255,127,.08),
+    inset 0 0 18px rgba(70,255,127,.02);
 }
 
 button:hover{
@@ -397,10 +419,10 @@ button:hover{
     scale(1.01);
 
     border-color:
-    rgba(109,255,152,.65);
+    rgba(70,255,127,.52);
 
     box-shadow:
-    0 0 70px rgba(109,255,152,.18),
+    0 0 70px rgba(70,255,127,.16),
     0 15px 40px rgba(0,0,0,.4);
 }
 
@@ -408,9 +430,9 @@ button:hover{
 
 .footer{
 
-    margin-top:34px;
+    margin-top:36px;
 
-    color:#5f6b63;
+    color:#59655d;
 
     font-size:18px;
 }
