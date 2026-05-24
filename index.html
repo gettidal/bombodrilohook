@@ -6,8 +6,6 @@
 
 <title>bombdrilo.hook</title>
 
-<meta name="theme-color" content="#08110a">
-
 <style>
 
 *{
@@ -25,12 +23,12 @@ body{
     Arial,
     sans-serif;
 
-    color:white;
-
     background:
-    radial-gradient(circle at top left, rgba(91,255,143,.12), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(133,255,172,.08), transparent 35%),
-    linear-gradient(135deg,#020503,#07110a,#000000);
+    radial-gradient(circle at top left, rgba(86,255,126,.15), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(86,255,126,.12), transparent 25%),
+    #020403;
+
+    color:white;
 }
 
 /* GRID */
@@ -40,44 +38,44 @@ body{
     inset:0;
 
     background-image:
-    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    linear-gradient(rgba(90,255,120,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90,255,120,.045) 1px, transparent 1px);
 
-    background-size:42px 42px;
+    background-size:48px 48px;
 
     mask-image:
-    radial-gradient(circle, black, transparent 80%);
+    radial-gradient(circle, black, transparent 85%);
 }
 
-/* ORBS */
+/* FLOATING GLOWS */
 
-.orb{
+.glow{
     position:fixed;
 
-    width:400px;
-    height:400px;
+    width:500px;
+    height:500px;
 
     border-radius:50%;
 
-    filter:blur(90px);
+    filter:blur(120px);
 
-    opacity:.25;
+    opacity:.18;
 
-    animation:float 8s ease-in-out infinite alternate;
+    animation:float 10s ease-in-out infinite alternate;
 }
 
-.orb.one{
-    background:#4dff88;
+.glow.left{
+    top:-200px;
+    left:-150px;
 
-    top:-120px;
-    left:-100px;
+    background:#61ff92;
 }
 
-.orb.two{
-    background:#98ffb7;
+.glow.right{
+    bottom:-200px;
+    right:-150px;
 
-    bottom:-140px;
-    right:-100px;
+    background:#61ff92;
 
     animation-delay:2s;
 }
@@ -91,8 +89,8 @@ body{
 
     to{
         transform:
-        translateY(45px)
-        scale(1.1);
+        translateY(50px)
+        scale(1.12);
     }
 }
 
@@ -102,9 +100,8 @@ body{
     position:fixed;
     inset:0;
 
-    overflow:hidden;
-
     pointer-events:none;
+    overflow:hidden;
 }
 
 .snow span{
@@ -113,19 +110,20 @@ body{
     width:4px;
     height:4px;
 
-    background:#d8ffe4;
-
     border-radius:50%;
+
+    background:#e7ffee;
 
     opacity:.8;
 
-    filter:
-    drop-shadow(0 0 8px #89ffab);
+    box-shadow:
+    0 0 10px #61ff92;
 
     animation:fall linear infinite;
 }
 
 @keyframes fall{
+
     0%{
         transform:
         translateY(-10vh)
@@ -141,17 +139,18 @@ body{
     100%{
         transform:
         translateY(110vh)
-        translateX(60px);
+        translateX(50px);
 
         opacity:0;
     }
+
 }
 
 /* MAIN */
 
 .wrap{
     position:relative;
-    z-index:5;
+    z-index:10;
 
     width:100%;
     height:100vh;
@@ -166,27 +165,30 @@ body{
 /* CARD */
 
 .card{
-    width:min(92vw, 500px);
+
+    position:relative;
+
+    width:min(92vw, 850px);
 
     padding:
-    clamp(28px,4vw,42px);
+    clamp(40px, 5vw, 70px);
 
-    border-radius:32px;
+    border-radius:42px;
 
     text-align:center;
 
     background:
-    rgba(255,255,255,.05);
+    rgba(5,12,8,.72);
 
     border:
-    1px solid rgba(255,255,255,.08);
+    1px solid rgba(120,255,160,.14);
 
     backdrop-filter:
-    blur(24px);
+    blur(30px);
 
     box-shadow:
-    0 30px 90px rgba(0,0,0,.6),
-    inset 0 1px 0 rgba(255,255,255,.1);
+    0 0 100px rgba(0,0,0,.7),
+    inset 0 1px 0 rgba(255,255,255,.04);
 }
 
 /* BADGE */
@@ -195,56 +197,58 @@ body{
     display:inline-flex;
 
     align-items:center;
-    gap:8px;
+    gap:10px;
 
     padding:
-    9px 14px;
+    12px 20px;
 
     border-radius:999px;
 
     background:
-    rgba(255,255,255,.06);
+    rgba(255,255,255,.04);
 
     border:
-    1px solid rgba(255,255,255,.08);
+    1px solid rgba(120,255,160,.12);
 
-    color:#b9ffcd;
+    color:#9cffb9;
 
-    font-size:12px;
+    font-size:14px;
 
-    margin-bottom:22px;
+    margin-bottom:38px;
 }
 
 .dot{
-    width:7px;
-    height:7px;
+    width:8px;
+    height:8px;
 
     border-radius:50%;
 
     background:#61ff92;
 
     box-shadow:
-    0 0 14px #61ff92;
+    0 0 15px #61ff92;
 }
 
 /* TITLE */
 
 h1{
+
     font-size:
-    clamp(42px, 8vw, 72px);
+    clamp(52px, 9vw, 120px);
 
-    line-height:.92;
+    line-height:.9;
 
-    letter-spacing:
-    -3px;
+    letter-spacing:-5px;
 
-    margin-bottom:18px;
+    margin-bottom:30px;
+
+    white-space:nowrap;
 
     background:
     linear-gradient(
         90deg,
         #ffffff,
-        #8dffb2,
+        #8dffaf,
         #ffffff
     );
 
@@ -254,68 +258,110 @@ h1{
 
 /* DESCRIPTION */
 
-p{
-    color:#9db5a5;
-
+.desc{
     font-size:
-    clamp(14px,2vw,16px);
+    clamp(18px,2vw,22px);
 
-    line-height:1.6;
+    line-height:1.5;
 
-    margin-bottom:30px;
+    color:#8d9d91;
+
+    margin-bottom:45px;
+}
+
+.desc span{
+    color:#71ff9d;
 }
 
 /* BUTTON */
 
 button{
+
+    position:relative;
+
     width:100%;
 
-    border:none;
-
-    border-radius:18px;
-
     padding:
-    18px 20px;
+    28px;
+
+    border-radius:28px;
+
+    border:
+    2px solid rgba(97,255,146,.65);
+
+    background:
+    rgba(0,0,0,.25);
+
+    color:#83ffab;
+
+    font-size:
+    clamp(24px,2vw,34px);
+
+    font-weight:700;
 
     cursor:pointer;
 
-    font-size:17px;
-    font-weight:900;
+    overflow:hidden;
 
-    color:#041108;
-
-    background:
-    linear-gradient(
-        135deg,
-        #a8ffbf,
-        #5eff8e
-    );
+    transition:.25s ease;
 
     box-shadow:
-    0 0 35px rgba(94,255,142,.35),
-    inset 0 1px 0 rgba(255,255,255,.7);
-
-    transition:.22s ease;
+    0 0 35px rgba(97,255,146,.18),
+    inset 0 0 20px rgba(97,255,146,.05);
 }
 
 button:hover{
+
     transform:
     translateY(-3px)
-    scale(1.02);
+    scale(1.01);
 
     box-shadow:
-    0 0 60px rgba(94,255,142,.5),
-    0 15px 35px rgba(0,0,0,.4);
+    0 0 60px rgba(97,255,146,.3),
+    0 15px 40px rgba(0,0,0,.4);
+
+    border-color:
+    rgba(97,255,146,.9);
+}
+
+.arrow{
+    position:absolute;
+
+    right:35px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:32px;
+
+    color:#7cffaa;
 }
 
 /* FOOTER */
 
 .footer{
-    margin-top:20px;
+    margin-top:38px;
 
-    color:#587261;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
 
-    font-size:12px;
+    color:#6d7d72;
+
+    font-size:20px;
+}
+
+.line{
+    width:120px;
+    height:1px;
+
+    background:
+    rgba(120,255,160,.15);
+}
+
+.leaf{
+    color:#7cffaa;
 }
 
 </style>
@@ -325,49 +371,69 @@ button:hover{
 
 <div class="grid"></div>
 
-<div class="orb one"></div>
-<div class="orb two"></div>
+<div class="glow left"></div>
+<div class="glow right"></div>
 
 <div class="snow">
-    <span style="left:5%; animation-duration:9s;"></span>
-    <span style="left:15%; animation-duration:12s; animation-delay:1s;"></span>
-    <span style="left:25%; animation-duration:10s; animation-delay:2s;"></span>
-    <span style="left:35%; animation-duration:14s;"></span>
-    <span style="left:45%; animation-duration:11s; animation-delay:3s;"></span>
-    <span style="left:55%; animation-duration:13s;"></span>
-    <span style="left:65%; animation-duration:9s; animation-delay:1s;"></span>
-    <span style="left:75%; animation-duration:15s;"></span>
-    <span style="left:85%; animation-duration:12s; animation-delay:2s;"></span>
-    <span style="left:95%; animation-duration:10s;"></span>
+
+<span style="left:5%; animation-duration:9s;"></span>
+<span style="left:12%; animation-duration:11s;"></span>
+<span style="left:20%; animation-duration:13s;"></span>
+<span style="left:28%; animation-duration:10s;"></span>
+<span style="left:36%; animation-duration:14s;"></span>
+<span style="left:44%; animation-duration:9s;"></span>
+<span style="left:52%; animation-duration:12s;"></span>
+<span style="left:60%; animation-duration:15s;"></span>
+<span style="left:68%; animation-duration:11s;"></span>
+<span style="left:76%; animation-duration:13s;"></span>
+<span style="left:84%; animation-duration:10s;"></span>
+<span style="left:92%; animation-duration:14s;"></span>
+
 </div>
 
 <div class="wrap">
 
-    <div class="card">
+<div class="card">
 
-        <div class="badge">
-            <div class="dot"></div>
-            secure access
-        </div>
+<div class="badge">
+<div class="dot"></div>
+secure access
+</div>
 
-        <h1>
-            bombdrilo.hook
-        </h1>
+<h1>
+bombdrilo.hook
+</h1>
 
-        <p>
-            premium fallen script<br>
-            by the owners of NHACK
-        </p>
+<div class="desc">
+premium fallen script<br>
+by the owners of <span>NHACK</span>
+</div>
 
-        <button id="buy-btn">
-            launch
-        </button>
+<button id="buy-btn">
 
-        <div class="footer">
-            bombardino.online
-        </div>
+launch
 
-    </div>
+<div class="arrow">
+→
+</div>
+
+</button>
+
+<div class="footer">
+
+<div class="line"></div>
+
+<div class="leaf">
+✦
+</div>
+
+bombardino.online
+
+<div class="line"></div>
+
+</div>
+
+</div>
 
 </div>
 
