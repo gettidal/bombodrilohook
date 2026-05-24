@@ -38,14 +38,8 @@ const ART = [
 const SEARCHES = ['tung', 'tungtunghook', 'tungggggg', 'sahur']
 
 const FILE_DOWNLOADS = [
-  'media/15cbb094-3f45-4f93-ade2-7d76715306bf.png',
-  'media/2013ed6f-9d82-4039-b28a-99c958f5a6fc.png',
-  'media/5be4a117-a0af-4cb9-9ebf-2524b1cb1dae.png',
-  'media/6591dd8d-4ed7-4558-b9c1-7c481a16b8fd.png',
-  'media/69d5f2f5-d241-42c4-bbd1-44f6055a05dd.png',
-  'media/9e3f1bfd-ceb8-43ff-8601-1709ee5d3fa0.png',
-  'media/cba91c1e-c621-47c3-abc5-7103c2710a33.png',
-  'media/d25ccc05-660e-454d-a8cd-6d1fce00888f.png'
+  'media/bombo1.png',
+  'media/bombo2.jpg'
 ]
 
 const PHRASES = ['tung', 'tungtunghook', 'tungtung']
