@@ -1,353 +1,659 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>bombdrilo.hook</title>
-<meta name="theme-color" content="#020604" />
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-:root {
-    --bg: #020604;
-    --panel: rgba(2, 10, 6, 0.74);
-    --green: #54d96d;
-    --green-soft: #8af59d;
-    --green-dark: #1b5f2d;
-    --muted: #8a968c;
+:root{
+    --green:#48d85b;
+    --green2:#82ff95;
 }
 
-html,
-body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    font-family: Inter, Arial, Helvetica, sans-serif;
-    background: #020604;
-    color: white;
-}
+body{
 
-/* BACKGROUND */
+    overflow:hidden;
+    height:100vh;
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
+    font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
     background:
-        radial-gradient(circle at 9% 12%, rgba(67, 185, 83, 0.22), transparent 18%),
-        radial-gradient(circle at 91% 85%, rgba(55, 170, 74, 0.2), transparent 20%),
-        radial-gradient(circle at 50% 45%, rgba(35, 90, 48, 0.22), transparent 45%),
-        linear-gradient(135deg, #020604, #031008 55%, #000);
-    z-index: 0;
+    radial-gradient(circle at top left, rgba(72,216,91,.12), transparent 20%),
+    radial-gradient(circle at bottom right, rgba(72,216,91,.10), transparent 22%),
+    #020503;
+
+    color:white;
 }
 
-.grid {
-    position: fixed;
-    inset: 0;
-    z-index: 1;
+/* GRID */
+
+.grid{
+
+    position:fixed;
+    inset:0;
+
     background-image:
-        linear-gradient(rgba(95, 255, 130, 0.028) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(95, 255, 130, 0.028) 1px, transparent 1px);
-    background-size: 42px 42px;
-    mask-image: radial-gradient(circle, black 20%, transparent 82%);
+    linear-gradient(rgba(72,216,91,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(72,216,91,.025) 1px, transparent 1px);
+
+    background-size:42px 42px;
+
+    mask-image:
+    radial-gradient(circle, black 20%, transparent 82%);
 }
 
-.mouse-glow {
-    position: fixed;
-    width: 520px;
-    height: 520px;
-    border-radius: 50%;
-    pointer-events: none;
-    background: radial-gradient(circle, rgba(72, 200, 91, 0.12), transparent 68%);
-    filter: blur(30px);
-    transform: translate(-50%, -50%);
-    z-index: 2;
+/* MOUSE GLOW */
+
+.mouse{
+
+    position:fixed;
+
+    width:700px;
+    height:700px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    background:
+    radial-gradient(circle,
+    rgba(72,216,91,.08),
+    transparent 65%);
+
+    filter:blur(35px);
+
+    transform:
+    translate(-50%, -50%);
+
+    z-index:0;
+}
+
+/* FLOATERS */
+
+.glow{
+
+    position:fixed;
+
+    width:400px;
+    height:400px;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    opacity:.08;
+
+    animation:float 10s infinite alternate ease-in-out;
+}
+
+.glow.left{
+
+    top:-120px;
+    left:-120px;
+
+    background:#48d85b;
+}
+
+.glow.right{
+
+    bottom:-120px;
+    right:-120px;
+
+    background:#48d85b;
+
+    animation-delay:2s;
+}
+
+@keyframes float{
+
+    from{
+        transform:
+        translateY(0px)
+        scale(1);
+    }
+
+    to{
+        transform:
+        translateY(40px)
+        scale(1.08);
+    }
+
 }
 
 /* PARTICLES */
 
-.particles {
-    position: fixed;
-    inset: 0;
-    z-index: 3;
-    pointer-events: none;
-    overflow: hidden;
+.particles{
+
+    position:fixed;
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
 }
 
-.particles span {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: #8cf59f;
-    opacity: 0.55;
-    box-shadow: 0 0 12px rgba(91, 230, 112, 0.9);
-    animation: drift linear infinite;
+.particles span{
+
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    border-radius:50%;
+
+    background:#dfffe5;
+
+    opacity:.6;
+
+    box-shadow:
+    0 0 10px #48d85b;
+
+    animation:fall linear infinite;
 }
 
-@keyframes drift {
-    0% {
-        transform: translateY(110vh) translateX(0);
-        opacity: 0;
+@keyframes fall{
+
+    0%{
+        transform:
+        translateY(-10vh)
+        translateX(0px);
+
+        opacity:0;
     }
 
-    20% {
-        opacity: 0.55;
+    10%{
+        opacity:.7;
     }
 
-    100% {
-        transform: translateY(-15vh) translateX(45px);
-        opacity: 0;
+    100%{
+        transform:
+        translateY(110vh)
+        translateX(40px);
+
+        opacity:0;
     }
+
 }
 
-/* PAGE */
+/* MAIN */
 
-.wrap {
-    position: relative;
-    z-index: 5;
-    width: 100%;
-    height: 100vh;
-    display: grid;
-    place-items: center;
-    padding: 34px;
+.wrap{
+
+    position:relative;
+    z-index:5;
+
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:35px;
 }
 
 /* CARD */
 
-.card {
-    width: min(82vw, 1040px);
-    min-height: min(72vh, 690px);
-    padding: clamp(42px, 5vw, 70px);
-    border-radius: 42px;
-    text-align: center;
-    background: var(--panel);
-    border: 1px solid rgba(104, 235, 126, 0.22);
+.card{
+
+    position:relative;
+
+    width:min(86vw, 1000px);
+
+    padding:
+    clamp(45px,5vw,75px);
+
+    border-radius:40px;
+
+    text-align:center;
+
+    background:
+    rgba(3,10,5,.72);
+
+    border:
+    1px solid rgba(72,216,91,.10);
+
+    backdrop-filter:
+    blur(30px);
+
     box-shadow:
-        0 0 90px rgba(0, 0, 0, 0.78),
-        0 0 80px rgba(56, 190, 73, 0.06),
-        inset 0 1px 0 rgba(255, 255, 255, 0.035);
-    backdrop-filter: blur(28px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
+    0 0 90px rgba(0,0,0,.72),
+    0 0 80px rgba(72,216,91,.05);
+
+    overflow:hidden;
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    border-radius:inherit;
+
+    padding:1px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(72,216,91,.18),
+        transparent,
+        rgba(72,216,91,.08)
+    );
+
+    -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    pointer-events:none;
 }
 
 /* BADGE */
 
-.badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    width: fit-content;
-    margin: 0 auto clamp(42px, 5vw, 68px);
-    padding: 12px 22px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid rgba(110, 235, 130, 0.13);
-    color: #b9ffc6;
-    font-size: 14px;
-    font-weight: 600;
-    box-shadow: 0 0 28px rgba(67, 210, 88, 0.05);
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+    gap:10px;
+
+    padding:
+    12px 22px;
+
+    border-radius:999px;
+
+    background:
+    rgba(255,255,255,.02);
+
+    border:
+    1px solid rgba(72,216,91,.08);
+
+    color:#dfffe5;
+
+    font-size:14px;
+
+    margin-bottom:50px;
 }
 
-.dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #5cef78;
-    box-shadow: 0 0 16px rgba(92, 239, 120, 0.95);
+.dot{
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#48d85b;
+
+    box-shadow:
+    0 0 14px #48d85b;
 }
 
 /* TITLE */
 
-h1 {
-    font-size: clamp(42px, 6.15vw, 88px);
-    line-height: 0.96;
-    letter-spacing: -4.5px;
-    font-weight: 900;
-    white-space: nowrap;
-    margin-bottom: clamp(34px, 4vw, 52px);
+h1{
+
+    font-size:
+    clamp(46px, 6vw, 92px);
+
+    line-height:.92;
+
+    letter-spacing:-5px;
+
+    margin-bottom:38px;
+
+    font-weight:900;
+
+    word-break:break-word;
+
+    overflow-wrap:anywhere;
 
     background:
-        linear-gradient(
-            105deg,
-            #d9ffe0 0%,
-            #92f0a2 18%,
-            #43bd55 38%,
-            #206f32 52%,
-            #65d878 66%,
-            #d5ffdc 82%,
-            #3bbd50 100%
-        );
-    background-size: 220% auto;
+    linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #9fffad 18%,
+        #48d85b 38%,
+        #1e6d2b 50%,
+        #6eff83 68%,
+        #ffffff 100%
+    );
 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-size:220% auto;
+
+    animation:
+    titleMove 7s linear infinite;
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
 
     filter:
-        drop-shadow(0 14px 18px rgba(0, 0, 0, 0.45))
-        drop-shadow(0 0 14px rgba(70, 205, 88, 0.12));
-
-    animation: titleGradient 7s linear infinite;
+    drop-shadow(0 0 12px rgba(72,216,91,.18));
 }
 
-@keyframes titleGradient {
-    0% {
-        background-position: 0% center;
+@keyframes titleMove{
+
+    0%{
+        background-position:0% center;
     }
 
-    100% {
-        background-position: 220% center;
+    100%{
+        background-position:220% center;
     }
+
 }
 
 /* DESCRIPTION */
 
-.desc {
-    color: var(--muted);
-    font-size: clamp(18px, 1.8vw, 25px);
-    line-height: 1.55;
-    margin-bottom: clamp(44px, 5vw, 64px);
+.desc{
+
+    font-size:
+    clamp(18px,1.7vw,24px);
+
+    line-height:1.55;
+
+    color:#879288;
+
+    margin-bottom:55px;
 }
 
-.desc span {
-    color: #58ef74;
+.desc span{
+    color:#59ef72;
 }
 
 /* BUTTON */
 
-button {
-    width: min(100%, 860px);
-    margin: 0 auto;
-    padding: clamp(22px, 2.5vw, 30px);
-    border-radius: 28px;
-    border: 1px solid rgba(86, 225, 105, 0.54);
+button{
+
+    width:100%;
+
+    padding:
+    28px;
+
+    border-radius:28px;
+
+    border:
+    1px solid rgba(72,216,91,.30);
+
     background:
-        linear-gradient(180deg, rgba(7, 21, 10, 0.7), rgba(1, 8, 4, 0.9));
-    color: #67eb7d;
-    font-size: clamp(26px, 2.7vw, 38px);
-    font-weight: 900;
-    cursor: pointer;
+    rgba(0,0,0,.18);
+
+    color:#87ff9b;
+
+    font-size:
+    clamp(24px,2vw,34px);
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+
     box-shadow:
-        0 0 42px rgba(66, 205, 83, 0.14),
-        inset 0 0 24px rgba(75, 210, 88, 0.035);
-    transition: 0.22s ease;
+    0 0 45px rgba(72,216,91,.08);
 }
 
-button:hover {
-    transform: translateY(-2px) scale(1.006);
-    border-color: rgba(111, 255, 135, 0.78);
-    color: #94ffa6;
+button:hover{
+
+    transform:
+    translateY(-2px)
+    scale(1.01);
+
+    border-color:
+    rgba(72,216,91,.65);
+
     box-shadow:
-        0 0 70px rgba(66, 205, 83, 0.22),
-        0 18px 50px rgba(0, 0, 0, 0.45);
+    0 0 70px rgba(72,216,91,.18),
+    0 15px 40px rgba(0,0,0,.4);
 }
 
 /* FOOTER */
 
-.footer {
-    margin-top: clamp(34px, 4vw, 48px);
-    color: #677069;
-    font-size: clamp(15px, 1.5vw, 20px);
+.footer{
+
+    margin-top:36px;
+
+    color:#59635a;
+
+    font-size:18px;
 }
 
-/* RESPONSIVE FIX */
+/* CROCODILE EMOJIS */
 
-@media (max-width: 900px) {
-    .card {
-        width: min(92vw, 760px);
-        min-height: auto;
-    }
+.crocs{
 
-    h1 {
-        white-space: normal;
-        font-size: clamp(40px, 11vw, 76px);
-        letter-spacing: -3px;
-    }
+    position:fixed;
+    inset:0;
+
+    pointer-events:none;
+    overflow:hidden;
 }
 
-@media (max-width: 520px) {
-    .wrap {
-        padding: 18px;
-    }
+.croc{
 
-    .card {
-        width: 94vw;
-        padding: 36px 20px;
-        border-radius: 30px;
-    }
+    position:absolute;
 
-    h1 {
-        font-size: clamp(36px, 12vw, 58px);
-        letter-spacing: -2px;
-    }
+    font-size:28px;
 
-    .badge {
-        margin-bottom: 34px;
-    }
+    opacity:.12;
+
+    animation:
+    crocFloat linear infinite;
 }
+
+@keyframes crocFloat{
+
+    0%{
+        transform:
+        translateY(110vh)
+        rotate(0deg);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:.12;
+    }
+
+    100%{
+        transform:
+        translateY(-20vh)
+        rotate(360deg);
+
+        opacity:0;
+    }
+
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .card{
+        padding:38px 22px;
+    }
+
+    h1{
+        letter-spacing:-2px;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="grid"></div>
-<div class="mouse-glow" id="mouseGlow"></div>
+
+<div class="mouse" id="mouse"></div>
+
+<div class="glow left glow"></div>
+<div class="glow right glow"></div>
 
 <div class="particles">
-    <span style="left:4%; animation-duration:19s; animation-delay:-3s;"></span>
-    <span style="left:12%; animation-duration:23s; animation-delay:-8s;"></span>
-    <span style="left:21%; animation-duration:18s; animation-delay:-5s;"></span>
-    <span style="left:31%; animation-duration:25s; animation-delay:-12s;"></span>
-    <span style="left:42%; animation-duration:20s; animation-delay:-7s;"></span>
-    <span style="left:53%; animation-duration:27s; animation-delay:-15s;"></span>
-    <span style="left:64%; animation-duration:21s; animation-delay:-4s;"></span>
-    <span style="left:76%; animation-duration:24s; animation-delay:-10s;"></span>
-    <span style="left:87%; animation-duration:19s; animation-delay:-6s;"></span>
-    <span style="left:96%; animation-duration:26s; animation-delay:-14s;"></span>
+
+<span style="left:5%; animation-duration:9s;"></span>
+<span style="left:13%; animation-duration:12s;"></span>
+<span style="left:21%; animation-duration:10s;"></span>
+<span style="left:29%; animation-duration:14s;"></span>
+<span style="left:37%; animation-duration:11s;"></span>
+<span style="left:45%; animation-duration:15s;"></span>
+<span style="left:53%; animation-duration:9s;"></span>
+<span style="left:61%; animation-duration:13s;"></span>
+<span style="left:69%; animation-duration:10s;"></span>
+<span style="left:77%; animation-duration:14s;"></span>
+<span style="left:85%; animation-duration:11s;"></span>
+<span style="left:93%; animation-duration:15s;"></span>
+
 </div>
 
-<main class="wrap">
-    <section class="card">
+<!-- CROCODILES -->
 
-        <div class="badge">
-            <div class="dot"></div>
-            secure access
-        </div>
+<div class="crocs">
 
-        <h1>bombdrilo.hook</h1>
+<div class="croc" style="left:8%; animation-duration:18s;">🐊</div>
+<div class="croc" style="left:22%; animation-duration:22s;">🐊</div>
+<div class="croc" style="left:39%; animation-duration:20s;">🐊</div>
+<div class="croc" style="left:57%; animation-duration:25s;">🐊</div>
+<div class="croc" style="left:74%; animation-duration:17s;">🐊</div>
+<div class="croc" style="left:88%; animation-duration:23s;">🐊</div>
 
-        <div class="desc">
-            premium fallen script<br>
-            by the owners of <span>NHACK</span>
-        </div>
+</div>
 
-        <button id="buy-btn">launch</button>
+<div class="wrap">
 
-        <div class="footer">
-            bombardino.online
-        </div>
+<div class="card">
 
-    </section>
-</main>
+<div class="badge">
+
+<div class="dot"></div>
+
+secure access
+
+</div>
+
+<h1>
+bombdrilo.hook
+</h1>
+
+<div class="desc">
+
+premium fallen script<br>
+by the owners of <span>NHACK</span>
+
+</div>
+
+<button id="buy-btn">
+
+launch
+
+</button>
+
+<div class="footer">
+
+bombardino.online
+
+</div>
+
+</div>
+
+</div>
 
 <script>
-const glow = document.getElementById("mouseGlow");
 
-window.addEventListener("mousemove", function(e) {
-    glow.style.left = e.clientX + "px";
-    glow.style.top = e.clientY + "px";
+/* MOUSE GLOW */
+
+const mouse = document.getElementById("mouse");
+
+document.addEventListener("mousemove",(e)=>{
+
+    mouse.style.left = e.clientX + "px";
+    mouse.style.top = e.clientY + "px";
+
 });
+
+/* BUTTON EFFECT */
+
+const btn = document.getElementById("buy-btn");
+
+btn.addEventListener("click", () => {
+
+    /* RAINBOW FLASH */
+
+    document.body.animate(
+    [
+        { filter: "hue-rotate(0deg)" },
+        { filter: "hue-rotate(360deg)" }
+    ],
+    {
+        duration: 250,
+        iterations: 6
+    });
+
+    /* TITLE */
+
+    const popup = document.createElement("div");
+
+    popup.innerText = "bombdrilo hook";
+
+    popup.style.position = "fixed";
+    popup.style.top = "35px";
+    popup.style.left = "50%";
+    popup.style.transform = "translateX(-50%) scale(.7)";
+    popup.style.padding = "18px 34px";
+    popup.style.borderRadius = "24px";
+    popup.style.background = "rgba(0,0,0,.75)";
+    popup.style.border = "1px solid rgba(72,216,91,.3)";
+    popup.style.color = "#7fff93";
+    popup.style.fontSize = "38px";
+    popup.style.fontWeight = "900";
+    popup.style.letterSpacing = "-2px";
+    popup.style.zIndex = "999999";
+    popup.style.opacity = "0";
+    popup.style.backdropFilter = "blur(18px)";
+    popup.style.boxShadow = "0 0 50px rgba(72,216,91,.25)";
+    popup.style.transition = ".25s ease";
+
+    document.body.appendChild(popup);
+
+    requestAnimationFrame(() => {
+
+        popup.style.opacity = "1";
+        popup.style.transform = "translateX(-50%) scale(1)";
+
+    });
+
+    setTimeout(() => {
+
+        popup.style.opacity = "0";
+        popup.style.transform = "translateX(-50%) scale(.85)";
+
+        setTimeout(() => {
+
+            popup.remove();
+
+        }, 250);
+
+    }, 1200);
+
+});
+
 </script>
 
-<!-- Keep this if your button needs your separate JS file -->
 <script src="script.js"></script>
 
 </body>
