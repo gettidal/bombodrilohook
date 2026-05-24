@@ -40,6 +40,7 @@ const SEARCHES = ['tung', 'tungtunghook', 'tungggggg', 'sahur']
 const FILE_DOWNLOADS = [
   'media/bombo1.png',
   'media/bombo2.jpg'
+  'media/bombo3.jpg'
 ]
 
 const PHRASES = ['tung', 'tungtunghook', 'tungtung']
