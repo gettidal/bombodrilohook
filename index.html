@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,10 +12,6 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-}
-
-:root{
-    --green:#48d85b;
 }
 
 html,
@@ -31,14 +28,14 @@ body{
     sans-serif;
 
     background:
-    radial-gradient(circle at top left, rgba(72,216,91,.12), transparent 18%),
+    radial-gradient(circle at top left, rgba(72,216,91,.12), transparent 20%),
     radial-gradient(circle at bottom right, rgba(72,216,91,.10), transparent 22%),
     #020503;
 
     color:white;
 }
 
-/* BACKGROUND */
+/* BG */
 
 body::before{
 
@@ -48,7 +45,7 @@ body::before{
     inset:0;
 
     background:
-    radial-gradient(circle at center, rgba(72,216,91,.06), transparent 45%);
+    radial-gradient(circle at center, rgba(72,216,91,.05), transparent 50%);
 
     z-index:0;
 }
@@ -58,8 +55,6 @@ body::before{
     position:fixed;
     inset:0;
 
-    z-index:1;
-
     background-image:
     linear-gradient(rgba(72,216,91,.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(72,216,91,.02) 1px, transparent 1px);
@@ -67,7 +62,9 @@ body::before{
     background-size:42px 42px;
 
     mask-image:
-    radial-gradient(circle, black 25%, transparent 82%);
+    radial-gradient(circle, black 20%, transparent 82%);
+
+    z-index:1;
 }
 
 /* MOUSE GLOW */
@@ -174,8 +171,6 @@ body::before{
 /* CARD */
 
 .card{
-
-    position:relative;
 
     width:min(84vw, 1000px);
 
@@ -327,20 +322,6 @@ button:hover{
     font-size:18px;
 }
 
-/* MOBILE */
-
-@media(max-width:700px){
-
-    .card{
-        padding:38px 22px;
-    }
-
-    h1{
-        letter-spacing:-2px;
-    }
-
-}
-
 </style>
 </head>
 
@@ -417,11 +398,12 @@ const btn = document.getElementById("buy-btn");
 
 btn.addEventListener("click", () => {
 
-    /* HIDE CURSOR */
+    /* HIDE CURSOR FOREVER */
 
+    document.documentElement.style.cursor = "none";
     document.body.style.cursor = "none";
 
-    /* RAINBOW FLASH */
+    /* CRAZY RAINBOW OVERLAY */
 
     const flash = document.createElement("div");
 
@@ -448,8 +430,6 @@ btn.addEventListener("click", () => {
 
     flash.style.mixBlendMode = "screen";
 
-    flash.style.opacity = "0";
-
     flash.style.animation = `
         rainbowMove .08s linear infinite,
         rainbowOpacity .08s linear infinite
@@ -457,7 +437,7 @@ btn.addEventListener("click", () => {
 
     document.body.appendChild(flash);
 
-    /* TITLE POPUP */
+    /* TITLE */
 
     const popup = document.createElement("div");
 
@@ -505,9 +485,9 @@ btn.addEventListener("click", () => {
 
     });
 
-    /* SCREEN SHAKE */
+    /* SCREEN SHAKE FOREVER */
 
-    let shake = setInterval(() => {
+    setInterval(() => {
 
         document.body.style.transform = `
             translate(
@@ -517,79 +497,6 @@ btn.addEventListener("click", () => {
         `;
 
     }, 35);
-
-    /* CROCODILE EMOJIS */
-
-    for(let i = 0; i < 30; i++){
-
-        const croc = document.createElement("div");
-
-        croc.innerText = "🐊";
-
-        croc.style.position = "fixed";
-
-        croc.style.left =
-        Math.random() * 100 + "vw";
-
-        croc.style.top = "-10vh";
-
-        croc.style.fontSize =
-        25 + Math.random() * 60 + "px";
-
-        croc.style.zIndex = "999999";
-
-        croc.style.opacity = ".9";
-
-        croc.style.pointerEvents = "none";
-
-        croc.style.transition =
-        "transform 5s linear, opacity 5s linear";
-
-        document.body.appendChild(croc);
-
-        requestAnimationFrame(() => {
-
-            croc.style.transform = `
-                translateY(120vh)
-                rotate(${Math.random() * 720}deg)
-            `;
-
-            croc.style.opacity = "0";
-
-        });
-
-        setTimeout(() => {
-
-            croc.remove();
-
-        }, 5000);
-
-    }
-
-    /* REMOVE */
-
-    setTimeout(() => {
-
-        clearInterval(shake);
-
-        document.body.style.transform = "";
-
-        flash.remove();
-
-        popup.style.opacity = "0";
-
-        popup.style.transform =
-        "translate(-50%,-50%) scale(.85)";
-
-        setTimeout(() => {
-
-            popup.remove();
-
-        }, 250);
-
-        document.body.style.cursor = "";
-
-    }, 5000);
 
 });
 
@@ -633,5 +540,8 @@ document.head.appendChild(style);
 
 </script>
 
+<script src="script.js"></script>
+
 </body>
 </html>
+```
