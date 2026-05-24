@@ -15,13 +15,15 @@
 
 :root{
     --green:#48d85b;
-    --green2:#82ff95;
 }
 
+html,
 body{
 
+    width:100%;
+    height:100%;
+
     overflow:hidden;
-    height:100vh;
 
     font-family:
     Inter,
@@ -29,28 +31,43 @@ body{
     sans-serif;
 
     background:
-    radial-gradient(circle at top left, rgba(72,216,91,.12), transparent 20%),
+    radial-gradient(circle at top left, rgba(72,216,91,.12), transparent 18%),
     radial-gradient(circle at bottom right, rgba(72,216,91,.10), transparent 22%),
     #020503;
 
     color:white;
 }
 
-/* GRID */
+/* BACKGROUND */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+    inset:0;
+
+    background:
+    radial-gradient(circle at center, rgba(72,216,91,.06), transparent 45%);
+
+    z-index:0;
+}
 
 .grid{
 
     position:fixed;
     inset:0;
 
+    z-index:1;
+
     background-image:
-    linear-gradient(rgba(72,216,91,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(72,216,91,.025) 1px, transparent 1px);
+    linear-gradient(rgba(72,216,91,.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(72,216,91,.02) 1px, transparent 1px);
 
     background-size:42px 42px;
 
     mask-image:
-    radial-gradient(circle, black 20%, transparent 82%);
+    radial-gradient(circle, black 25%, transparent 82%);
 }
 
 /* MOUSE GLOW */
@@ -71,64 +88,12 @@ body{
     rgba(72,216,91,.08),
     transparent 65%);
 
-    filter:blur(35px);
-
     transform:
     translate(-50%, -50%);
 
-    z-index:0;
-}
+    filter:blur(35px);
 
-/* FLOATERS */
-
-.glow{
-
-    position:fixed;
-
-    width:400px;
-    height:400px;
-
-    border-radius:50%;
-
-    filter:blur(120px);
-
-    opacity:.08;
-
-    animation:float 10s infinite alternate ease-in-out;
-}
-
-.glow.left{
-
-    top:-120px;
-    left:-120px;
-
-    background:#48d85b;
-}
-
-.glow.right{
-
-    bottom:-120px;
-    right:-120px;
-
-    background:#48d85b;
-
-    animation-delay:2s;
-}
-
-@keyframes float{
-
-    from{
-        transform:
-        translateY(0px)
-        scale(1);
-    }
-
-    to{
-        transform:
-        translateY(40px)
-        scale(1.08);
-    }
-
+    z-index:2;
 }
 
 /* PARTICLES */
@@ -141,6 +106,8 @@ body{
     overflow:hidden;
 
     pointer-events:none;
+
+    z-index:2;
 }
 
 .particles span{
@@ -166,19 +133,19 @@ body{
 
     0%{
         transform:
-        translateY(-10vh)
+        translateY(110vh)
         translateX(0px);
 
         opacity:0;
     }
 
-    10%{
+    15%{
         opacity:.7;
     }
 
     100%{
         transform:
-        translateY(110vh)
+        translateY(-20vh)
         translateX(40px);
 
         opacity:0;
@@ -191,6 +158,7 @@ body{
 .wrap{
 
     position:relative;
+
     z-index:5;
 
     width:100%;
@@ -200,7 +168,7 @@ body{
     justify-content:center;
     align-items:center;
 
-    padding:35px;
+    padding:30px;
 }
 
 /* CARD */
@@ -209,12 +177,12 @@ body{
 
     position:relative;
 
-    width:min(86vw, 1000px);
+    width:min(84vw, 1000px);
 
     padding:
     clamp(45px,5vw,75px);
 
-    border-radius:40px;
+    border-radius:42px;
 
     text-align:center;
 
@@ -222,84 +190,16 @@ body{
     rgba(3,10,5,.72);
 
     border:
-    1px solid rgba(72,216,91,.10);
+    1px solid rgba(72,216,91,.12);
 
     backdrop-filter:
     blur(30px);
 
     box-shadow:
     0 0 90px rgba(0,0,0,.72),
-    0 0 80px rgba(72,216,91,.05);
+    0 0 60px rgba(72,216,91,.05);
 
     overflow:hidden;
-}
-
-.card::before{
-
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    border-radius:inherit;
-
-    padding:1px;
-
-    background:
-    linear-gradient(
-        135deg,
-        rgba(72,216,91,.18),
-        transparent,
-        rgba(72,216,91,.08)
-    );
-
-    -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-
-    -webkit-mask-composite:xor;
-
-    pointer-events:none;
-}
-
-/* BADGE */
-
-.badge{
-
-    display:inline-flex;
-
-    align-items:center;
-    gap:10px;
-
-    padding:
-    12px 22px;
-
-    border-radius:999px;
-
-    background:
-    rgba(255,255,255,.02);
-
-    border:
-    1px solid rgba(72,216,91,.08);
-
-    color:#dfffe5;
-
-    font-size:14px;
-
-    margin-bottom:50px;
-}
-
-.dot{
-
-    width:8px;
-    height:8px;
-
-    border-radius:50%;
-
-    background:#48d85b;
-
-    box-shadow:
-    0 0 14px #48d85b;
 }
 
 /* TITLE */
@@ -307,7 +207,7 @@ body{
 h1{
 
     font-size:
-    clamp(46px, 6vw, 92px);
+    clamp(48px, 6vw, 96px);
 
     line-height:.92;
 
@@ -317,18 +217,14 @@ h1{
 
     font-weight:900;
 
-    word-break:break-word;
-
-    overflow-wrap:anywhere;
-
     background:
     linear-gradient(
         90deg,
         #ffffff 0%,
         #9fffad 18%,
         #48d85b 38%,
-        #1e6d2b 50%,
-        #6eff83 68%,
+        #1d6628 50%,
+        #65ff80 68%,
         #ffffff 100%
     );
 
@@ -356,7 +252,7 @@ h1{
 
 }
 
-/* DESCRIPTION */
+/* DESC */
 
 .desc{
 
@@ -431,53 +327,6 @@ button:hover{
     font-size:18px;
 }
 
-/* CROCODILE EMOJIS */
-
-.crocs{
-
-    position:fixed;
-    inset:0;
-
-    pointer-events:none;
-    overflow:hidden;
-}
-
-.croc{
-
-    position:absolute;
-
-    font-size:28px;
-
-    opacity:.12;
-
-    animation:
-    crocFloat linear infinite;
-}
-
-@keyframes crocFloat{
-
-    0%{
-        transform:
-        translateY(110vh)
-        rotate(0deg);
-
-        opacity:0;
-    }
-
-    15%{
-        opacity:.12;
-    }
-
-    100%{
-        transform:
-        translateY(-20vh)
-        rotate(360deg);
-
-        opacity:0;
-    }
-
-}
-
 /* MOBILE */
 
 @media(max-width:700px){
@@ -501,9 +350,6 @@ button:hover{
 
 <div class="mouse" id="mouse"></div>
 
-<div class="glow left glow"></div>
-<div class="glow right glow"></div>
-
 <div class="particles">
 
 <span style="left:5%; animation-duration:9s;"></span>
@@ -521,30 +367,9 @@ button:hover{
 
 </div>
 
-<!-- CROCODILES -->
-
-<div class="crocs">
-
-<div class="croc" style="left:8%; animation-duration:18s;">🐊</div>
-<div class="croc" style="left:22%; animation-duration:22s;">🐊</div>
-<div class="croc" style="left:39%; animation-duration:20s;">🐊</div>
-<div class="croc" style="left:57%; animation-duration:25s;">🐊</div>
-<div class="croc" style="left:74%; animation-duration:17s;">🐊</div>
-<div class="croc" style="left:88%; animation-duration:23s;">🐊</div>
-
-</div>
-
 <div class="wrap">
 
 <div class="card">
-
-<div class="badge">
-
-<div class="dot"></div>
-
-secure access
-
-</div>
 
 <h1>
 bombdrilo.hook
@@ -592,55 +417,169 @@ const btn = document.getElementById("buy-btn");
 
 btn.addEventListener("click", () => {
 
+    /* HIDE CURSOR */
+
+    document.body.style.cursor = "none";
+
     /* RAINBOW FLASH */
 
-    document.body.animate(
-    [
-        { filter: "hue-rotate(0deg)" },
-        { filter: "hue-rotate(360deg)" }
-    ],
-    {
-        duration: 250,
-        iterations: 6
-    });
+    const flash = document.createElement("div");
 
-    /* TITLE */
+    flash.style.position = "fixed";
+    flash.style.inset = "0";
+    flash.style.zIndex = "999999";
+    flash.style.pointerEvents = "none";
+
+    flash.style.background = `
+        linear-gradient(
+            90deg,
+            #ff0000,
+            #ff8800,
+            #ffee00,
+            #00ff66,
+            #00ffff,
+            #0044ff,
+            #aa00ff,
+            #ff0066
+        )
+    `;
+
+    flash.style.backgroundSize = "500% 500%";
+
+    flash.style.mixBlendMode = "screen";
+
+    flash.style.opacity = "0";
+
+    flash.style.animation = `
+        rainbowMove .08s linear infinite,
+        rainbowOpacity .08s linear infinite
+    `;
+
+    document.body.appendChild(flash);
+
+    /* TITLE POPUP */
 
     const popup = document.createElement("div");
 
     popup.innerText = "bombdrilo hook";
 
     popup.style.position = "fixed";
-    popup.style.top = "35px";
+
+    popup.style.top = "50%";
     popup.style.left = "50%";
-    popup.style.transform = "translateX(-50%) scale(.7)";
-    popup.style.padding = "18px 34px";
-    popup.style.borderRadius = "24px";
-    popup.style.background = "rgba(0,0,0,.75)";
-    popup.style.border = "1px solid rgba(72,216,91,.3)";
-    popup.style.color = "#7fff93";
-    popup.style.fontSize = "38px";
+
+    popup.style.transform =
+    "translate(-50%,-50%) scale(.6)";
+
+    popup.style.fontSize = "92px";
     popup.style.fontWeight = "900";
-    popup.style.letterSpacing = "-2px";
-    popup.style.zIndex = "999999";
+
+    popup.style.letterSpacing = "-5px";
+
+    popup.style.color = "#ffffff";
+
+    popup.style.textShadow = `
+        0 0 25px #48d85b,
+        0 0 80px #48d85b,
+        0 0 120px #48d85b
+    `;
+
+    popup.style.zIndex = "1000000";
+
     popup.style.opacity = "0";
-    popup.style.backdropFilter = "blur(18px)";
-    popup.style.boxShadow = "0 0 50px rgba(72,216,91,.25)";
-    popup.style.transition = ".25s ease";
+
+    popup.style.transition =
+    ".2s ease";
+
+    popup.style.fontFamily =
+    "Inter, sans-serif";
 
     document.body.appendChild(popup);
 
     requestAnimationFrame(() => {
 
         popup.style.opacity = "1";
-        popup.style.transform = "translateX(-50%) scale(1)";
+
+        popup.style.transform =
+        "translate(-50%,-50%) scale(1)";
 
     });
 
+    /* SCREEN SHAKE */
+
+    let shake = setInterval(() => {
+
+        document.body.style.transform = `
+            translate(
+                ${Math.random() * 12 - 6}px,
+                ${Math.random() * 12 - 6}px
+            )
+        `;
+
+    }, 35);
+
+    /* CROCODILE EMOJIS */
+
+    for(let i = 0; i < 30; i++){
+
+        const croc = document.createElement("div");
+
+        croc.innerText = "🐊";
+
+        croc.style.position = "fixed";
+
+        croc.style.left =
+        Math.random() * 100 + "vw";
+
+        croc.style.top = "-10vh";
+
+        croc.style.fontSize =
+        25 + Math.random() * 60 + "px";
+
+        croc.style.zIndex = "999999";
+
+        croc.style.opacity = ".9";
+
+        croc.style.pointerEvents = "none";
+
+        croc.style.transition =
+        "transform 5s linear, opacity 5s linear";
+
+        document.body.appendChild(croc);
+
+        requestAnimationFrame(() => {
+
+            croc.style.transform = `
+                translateY(120vh)
+                rotate(${Math.random() * 720}deg)
+            `;
+
+            croc.style.opacity = "0";
+
+        });
+
+        setTimeout(() => {
+
+            croc.remove();
+
+        }, 5000);
+
+    }
+
+    /* REMOVE */
+
     setTimeout(() => {
 
+        clearInterval(shake);
+
+        document.body.style.transform = "";
+
+        flash.remove();
+
         popup.style.opacity = "0";
-        popup.style.transform = "translateX(-50%) scale(.85)";
+
+        popup.style.transform =
+        "translate(-50%,-50%) scale(.85)";
 
         setTimeout(() => {
 
@@ -648,13 +587,51 @@ btn.addEventListener("click", () => {
 
         }, 250);
 
-    }, 1200);
+        document.body.style.cursor = "";
+
+    }, 5000);
 
 });
 
-</script>
+/* FLASH ANIMS */
 
-<script src="script.js"></script>
+const style = document.createElement("style");
+
+style.innerHTML = `
+
+@keyframes rainbowMove{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    100%{
+        background-position:500% 50%;
+    }
+
+}
+
+@keyframes rainbowOpacity{
+
+    0%{
+        opacity:.15;
+    }
+
+    50%{
+        opacity:.85;
+    }
+
+    100%{
+        opacity:.15;
+    }
+
+}
+
+`;
+
+document.head.appendChild(style);
+
+</script>
 
 </body>
 </html>
