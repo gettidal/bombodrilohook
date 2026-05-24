@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>bombdrilo.hook</title>
@@ -15,23 +15,23 @@
 }
 
 :root{
-    --green:#72ff9f;
-    --green2:#b7ffcb;
+    --green:#6dff98;
 }
 
 body{
+
     overflow:hidden;
     height:100vh;
-
-    background:
-    radial-gradient(circle at top left, rgba(114,255,159,.10), transparent 20%),
-    radial-gradient(circle at bottom right, rgba(114,255,159,.08), transparent 20%),
-    #020403;
 
     font-family:
     Inter,
     Arial,
     sans-serif;
+
+    background:
+    radial-gradient(circle at top left, rgba(109,255,152,.07), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(109,255,152,.06), transparent 22%),
+    #020403;
 
     color:white;
 }
@@ -39,26 +39,28 @@ body{
 /* GRID */
 
 .grid{
+
     position:fixed;
     inset:0;
 
     background-image:
-    linear-gradient(rgba(114,255,159,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(114,255,159,.03) 1px, transparent 1px);
+    linear-gradient(rgba(109,255,152,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(109,255,152,.025) 1px, transparent 1px);
 
     background-size:42px 42px;
 
     mask-image:
-    radial-gradient(circle, black, transparent 80%);
+    radial-gradient(circle, black, transparent 82%);
 }
 
-/* MOUSE GLOW */
+/* MOUSE LIGHT */
 
-.mouse-glow{
+.mouse{
+
     position:fixed;
 
-    width:550px;
-    height:550px;
+    width:650px;
+    height:650px;
 
     border-radius:50%;
 
@@ -66,20 +68,21 @@ body{
 
     background:
     radial-gradient(circle,
-    rgba(114,255,159,.11),
+    rgba(109,255,152,.06),
     transparent 65%);
+
+    filter:blur(30px);
 
     transform:
     translate(-50%, -50%);
 
-    filter:blur(25px);
-
     z-index:0;
 }
 
-/* FLOATERS */
+/* BG GLOWS */
 
 .glow{
+
     position:fixed;
 
     width:400px;
@@ -89,23 +92,25 @@ body{
 
     filter:blur(120px);
 
-    opacity:.13;
+    opacity:.08;
 
     animation:float 10s infinite alternate ease-in-out;
 }
 
 .glow.left{
+
     top:-120px;
     left:-120px;
 
-    background:#72ff9f;
+    background:#6dff98;
 }
 
 .glow.right{
+
     bottom:-120px;
     right:-120px;
 
-    background:#72ff9f;
+    background:#6dff98;
 
     animation-delay:2s;
 }
@@ -129,6 +134,7 @@ body{
 /* PARTICLES */
 
 .particles{
+
     position:fixed;
     inset:0;
 
@@ -138,19 +144,20 @@ body{
 }
 
 .particles span{
+
     position:absolute;
 
-    width:4px;
-    height:4px;
+    width:3px;
+    height:3px;
 
     border-radius:50%;
 
-    background:#dfffe8;
+    background:#eafff0;
 
-    opacity:.8;
+    opacity:.65;
 
     box-shadow:
-    0 0 10px #72ff9f;
+    0 0 8px #6dff98;
 
     animation:fall linear infinite;
 }
@@ -166,13 +173,13 @@ body{
     }
 
     10%{
-        opacity:.8;
+        opacity:.7;
     }
 
     100%{
         transform:
         translateY(110vh)
-        translateX(50px);
+        translateX(40px);
 
         opacity:0;
     }
@@ -182,6 +189,7 @@ body{
 /* MAIN */
 
 .wrap{
+
     position:relative;
     z-index:5;
 
@@ -192,7 +200,7 @@ body{
     justify-content:center;
     align-items:center;
 
-    padding:20px;
+    padding:30px;
 }
 
 /* CARD */
@@ -201,32 +209,30 @@ body{
 
     position:relative;
 
-    width:min(92vw, 950px);
+    width:min(88vw, 1050px);
 
     padding:
-    clamp(40px,5vw,70px);
+    clamp(45px,5vw,70px);
 
-    border-radius:42px;
+    border-radius:38px;
 
     text-align:center;
 
     background:
-    rgba(5,12,8,.70);
+    rgba(5,12,8,.60);
 
     border:
-    1px solid rgba(114,255,159,.10);
+    1px solid rgba(109,255,152,.08);
 
     backdrop-filter:
-    blur(26px);
+    blur(24px);
 
     box-shadow:
-    0 0 100px rgba(0,0,0,.7),
-    inset 0 1px 0 rgba(255,255,255,.03);
+    0 0 80px rgba(0,0,0,.65),
+    inset 0 1px 0 rgba(255,255,255,.025);
 
     overflow:hidden;
 }
-
-/* BORDER SHINE */
 
 .card::before{
 
@@ -242,9 +248,9 @@ body{
     background:
     linear-gradient(
         135deg,
-        rgba(114,255,159,.35),
+        rgba(109,255,152,.18),
         transparent,
-        rgba(114,255,159,.2)
+        rgba(109,255,152,.10)
     );
 
     -webkit-mask:
@@ -266,33 +272,34 @@ body{
     gap:10px;
 
     padding:
-    12px 22px;
+    11px 20px;
 
     border-radius:999px;
 
     background:
-    rgba(255,255,255,.03);
+    rgba(255,255,255,.025);
 
     border:
-    1px solid rgba(114,255,159,.08);
+    1px solid rgba(109,255,152,.07);
 
-    color:#c7ffd7;
+    color:#d8ffe5;
 
     font-size:14px;
 
-    margin-bottom:38px;
+    margin-bottom:45px;
 }
 
 .dot{
+
     width:8px;
     height:8px;
 
     border-radius:50%;
 
-    background:#72ff9f;
+    background:#6dff98;
 
     box-shadow:
-    0 0 15px #72ff9f;
+    0 0 12px #6dff98;
 }
 
 /* TITLE */
@@ -300,63 +307,52 @@ body{
 h1{
 
     font-size:
-    clamp(48px, 8vw, 108px);
+    clamp(42px, 6vw, 96px);
 
-    line-height:.95;
+    line-height:.92;
 
-    letter-spacing:-5px;
+    letter-spacing:-4px;
 
-    margin-bottom:30px;
+    margin-bottom:35px;
 
     word-break:break-word;
 
-    overflow-wrap:break-word;
+    overflow-wrap:anywhere;
+
+    font-weight:800;
 
     background:
     linear-gradient(
         90deg,
         #ffffff 0%,
-        #f4fff7 25%,
-        #91ffb4 50%,
-        #ffffff 75%
+        #eafff0 28%,
+        #a7ffbf 50%,
+        #ffffff 72%
     );
-
-    background-size:200% auto;
 
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 
-    animation:shine 8s linear infinite;
+    text-shadow:
+    0 0 30px rgba(109,255,152,.04);
 }
 
-@keyframes shine{
-
-    from{
-        background-position:0% center;
-    }
-
-    to{
-        background-position:200% center;
-    }
-
-}
-
-/* DESCRIPTION */
+/* DESC */
 
 .desc{
 
     font-size:
-    clamp(18px,2vw,24px);
+    clamp(18px,1.7vw,24px);
 
-    line-height:1.5;
+    line-height:1.55;
 
-    color:#8d9d91;
+    color:#89948d;
 
-    margin-bottom:45px;
+    margin-bottom:50px;
 }
 
 .desc span{
-    color:#7effa7;
+    color:#72ff9f;
 }
 
 /* BUTTON */
@@ -368,60 +364,30 @@ button{
     width:100%;
 
     padding:
-    28px;
+    26px;
 
-    border-radius:28px;
+    border-radius:26px;
 
     border:
-    1px solid rgba(114,255,159,.45);
+    1px solid rgba(109,255,152,.38);
 
     background:
-    rgba(0,0,0,.28);
+    rgba(0,0,0,.22);
 
-    color:#92ffb6;
+    color:#8effb3;
 
     font-size:
-    clamp(24px,2vw,34px);
+    clamp(22px,2vw,34px);
 
     font-weight:700;
 
     cursor:pointer;
 
-    overflow:hidden;
-
     transition:.25s ease;
 
     box-shadow:
-    0 0 40px rgba(114,255,159,.12),
-    inset 0 0 20px rgba(114,255,159,.04);
-}
-
-button::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-    linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.08),
-        transparent
-    );
-
-    transform:
-    translateX(-100%);
-
-    transition:.6s;
-}
-
-button:hover::before{
-
-    transform:
-    translateX(100%);
+    0 0 40px rgba(109,255,152,.10),
+    inset 0 0 20px rgba(109,255,152,.03);
 }
 
 button:hover{
@@ -431,10 +397,10 @@ button:hover{
     scale(1.01);
 
     border-color:
-    rgba(114,255,159,.75);
+    rgba(109,255,152,.65);
 
     box-shadow:
-    0 0 70px rgba(114,255,159,.22),
+    0 0 70px rgba(109,255,152,.18),
     0 15px 40px rgba(0,0,0,.4);
 }
 
@@ -442,11 +408,11 @@ button:hover{
 
 .footer{
 
-    margin-top:36px;
+    margin-top:34px;
 
-    color:#65746a;
+    color:#5f6b63;
 
-    font-size:20px;
+    font-size:18px;
 }
 
 /* MOBILE */
@@ -454,7 +420,7 @@ button:hover{
 @media(max-width:700px){
 
     .card{
-        padding:35px 22px;
+        padding:38px 22px;
     }
 
     h1{
@@ -470,7 +436,7 @@ button:hover{
 
 <div class="grid"></div>
 
-<div class="mouse-glow" id="mouseGlow"></div>
+<div class="mouse" id="mouse"></div>
 
 <div class="glow left glow"></div>
 <div class="glow right glow"></div>
@@ -478,15 +444,15 @@ button:hover{
 <div class="particles">
 
 <span style="left:5%; animation-duration:9s;"></span>
-<span style="left:13%; animation-duration:11s;"></span>
-<span style="left:21%; animation-duration:13s;"></span>
-<span style="left:29%; animation-duration:10s;"></span>
-<span style="left:37%; animation-duration:15s;"></span>
-<span style="left:45%; animation-duration:12s;"></span>
+<span style="left:13%; animation-duration:12s;"></span>
+<span style="left:21%; animation-duration:10s;"></span>
+<span style="left:29%; animation-duration:14s;"></span>
+<span style="left:37%; animation-duration:11s;"></span>
+<span style="left:45%; animation-duration:15s;"></span>
 <span style="left:53%; animation-duration:9s;"></span>
-<span style="left:61%; animation-duration:14s;"></span>
+<span style="left:61%; animation-duration:13s;"></span>
 <span style="left:69%; animation-duration:10s;"></span>
-<span style="left:77%; animation-duration:13s;"></span>
+<span style="left:77%; animation-duration:14s;"></span>
 <span style="left:85%; animation-duration:11s;"></span>
 <span style="left:93%; animation-duration:15s;"></span>
 
@@ -533,12 +499,12 @@ bombardino.online
 
 <script>
 
-const glow = document.getElementById("mouseGlow");
+const mouse = document.getElementById("mouse");
 
-document.addEventListener("mousemove", (e)=>{
+document.addEventListener("mousemove",(e)=>{
 
-    glow.style.left = e.clientX + "px";
-    glow.style.top = e.clientY + "px";
+    mouse.style.left = e.clientX + "px";
+    mouse.style.top = e.clientY + "px";
 
 });
 
